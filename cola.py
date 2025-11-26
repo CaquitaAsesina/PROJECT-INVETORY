@@ -78,3 +78,24 @@ class Cola:
         self.tamaño = 0
         self.frente = None
         self.ultimo = None
+    
+    def mostrar_agenda_frente(self):
+        if self.esta_vacia():
+            return None
+        actual = self.frente
+        agenda = []
+        while actual != None:
+            agenda.append(actual.registro)
+            actual = actual.siguiente
+        return agenda
+    
+    def mostrar_ageneda_ultimo(self):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo
+        agenda = []
+        while actual != None:
+            agenda.append(actual.registro)
+            actual = actual.anterior
+        return agenda
+        
