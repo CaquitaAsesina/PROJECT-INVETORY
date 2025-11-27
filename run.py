@@ -1,7 +1,7 @@
 from clase import Sistema
 from tkinter import Button, Entry, Label, Tk, Frame, Canvas, Scrollbar, Toplevel
 from cola import Cola
-from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo
+from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico
 import random
 cola = Cola()
 
@@ -136,6 +136,191 @@ def comando_buscar_primero():
         return None
     return interfaz_buscar_primero(usuario)
 
+def buscar_codigo_final(codigo):
+    if codigo == "":
+        return None
+    usuario = cola.busca_codigo(int(codigo))
+    if usuario == None:
+        return None
+    return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA CODIGO🔎")
+
+def comando_buscar_codigo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CODIGO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_codigo = Label(ventana, text="✅CODIGO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_codigo.place(x=15, y=70, width=140, height=40)
+
+    entry_codigo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_codigo.place(x=170, y=70, width=160, height=40)
+
+    codigo_boton = Button(ventana, text="✅BUSCAR CODIGO✅", command=lambda: buscar_codigo_final(entry_codigo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    codigo_boton.place(x=55, y=120, width=230, height=45)
+
+def buscar_nombre_final(nombre):
+    if nombre == "":
+        return None
+    usuario = cola.busca_nombre(nombre)
+    if usuario == None:
+        return None
+    return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA NOMBRE🔎")
+
+def comando_buscar_nombre():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR NOMBRE🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_nombre = Label(ventana, text="✅NOMBRE:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_nombre.place(x=15, y=70, width=140, height=40)
+
+    entry_nombre = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_nombre.place(x=170, y=70, width=160, height=40)
+
+    nombre_boton = Button(ventana, text="✅BUSCAR NOMBRE✅", command=lambda: buscar_nombre_final(entry_nombre.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    nombre_boton.place(x=55, y=120, width=230, height=45)
+    
+def buscar_apellido_final(apellido):
+    if apellido == "":
+        return None
+    usuario = cola.busca_apellido(apellido)
+    if usuario == None:
+        return None
+    return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA APELLIDO🔎")
+    
+def comando_buscar_apellido():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR APELLIDO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_apellido = Label(ventana, text="✅APELLIDO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_apellido.place(x=15, y=70, width=140, height=40)
+
+    entry_apellido = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_apellido.place(x=170, y=70, width=160, height=40)
+
+    apellido_boton = Button(ventana, text="✅BUSCAR APELLLIDO✅", command=lambda: buscar_apellido_final(entry_apellido.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    apellido_boton.place(x=55, y=120, width=230, height=45)
+
+def buscar_correo_final(correo):
+    if correo == "":
+        return None
+    usuario = cola.busca_correo(correo)
+    if usuario == None:
+        return None
+    return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA CORREO🔎")
+
+def comando_buscar_correo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CORREO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_correo = Label(ventana, text="✅CORREO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_correo.place(x=15, y=70, width=140, height=40)
+
+    entry_correo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_correo.place(x=170, y=70, width=160, height=40)
+
+    correo_boton = Button(ventana, text="✅BUSCAR CORREO✅", command=lambda: buscar_correo_final(entry_correo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    correo_boton.place(x=55, y=120, width=230, height=45)
+
+def buscar_telefono_final(telefono):
+    if telefono == "":
+        return None
+    usuario = cola.busca_telefono(int(telefono))
+    if usuario == None:
+        return None
+    return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA TELEFONO🔎")
+
+def comando_buscar_telefono():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR TELEFONO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_telefono = Label(ventana, text="✅TELEFONO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_telefono.place(x=15, y=70, width=140, height=40)
+
+    entry_telefono = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_telefono.place(x=170, y=70, width=160, height=40)
+
+    telefono_boton = Button(ventana, text="✅BUSCAR TELEFONO✅", command=lambda: buscar_telefono_final(entry_telefono.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    telefono_boton.place(x=55, y=120, width=230, height=45)
+    
+def buscar_categoria_final(categoria):
+    if categoria == "":
+        return None
+    registros = cola.busca_categoria(categoria)
+    if registros == None:
+        return None
+    return mostrar(registros, "🔍BUSCAR CATEGORIA🔎")
+    
+def comando_buscar_categoria():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CATEGORIA🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_categoria = Label(ventana, text="✅CATEGORRIA:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_categoria.place(x=15, y=70, width=140, height=40)
+
+    entry_categoria = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_categoria.place(x=170, y=70, width=160, height=40)
+
+    categoria_boton = Button(ventana, text="✅BUSCAR CATEGORIA✅", command=lambda: buscar_categoria_final(entry_categoria.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    categoria_boton.place(x=55, y=120, width=230, height=45)
+
+
+def comando_buscar_especifico():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x410")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    buscar_codigo = Button(ventana, text="🔍BUSCAR CODIGO🔎", command=comando_buscar_codigo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_codigo.place(x=55, y=70, width=230, height=45)
+    
+    buscar_nombre = Button(ventana, text="🔍BUSCAR NOMBRE🔎", command=comando_buscar_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_nombre.place(x=55, y=125, width=230, height=45)
+    
+    buscar_apellido = Button(ventana, text="🔍BUSCAR APELLIDO🔎", command=comando_buscar_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_apellido.place(x=55, y=180, width=230, height=45)
+    
+    buscar_correo = Button(ventana, text="🔍BUSCAR EMAIL🔎", command=comando_buscar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_correo.place(x=55, y=235, width=230, height=45)
+    
+    buscar_telefono = Button(ventana, text="🔍BUSCAR TELEFONO🔎", command=comando_buscar_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_telefono.place(x=55, y=290, width=230, height=45)
+    
+    buscar_categoria = Button(ventana, text="🔍BUSCAR CATEGORIA🔎", command=comando_buscar_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_categoria.place(x=55, y=345, width=230, height=45)
+
+
 def comando_buscar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
@@ -151,7 +336,7 @@ def comando_buscar():
     ultimo_boton = Button(ventana, text="🔍BUSCAR ULTIMO🔎", command=comando_buscar_ultimo, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     ultimo_boton.place(x=55, y=125, width=230, height=45)
     
-    especifico_boton = Button(ventana, text="🔍BUSCAR ESPECIFICO🔎", command=comando_agregar, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    especifico_boton = Button(ventana, text="🔍BUSCAR ESPECIFICO🔎", command=comando_buscar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     especifico_boton.place(x=55, y=180, width=230, height=45)
 
 #ELIMINAR(DELETE)
@@ -203,6 +388,59 @@ def comando_eliminar_ultimo():
     eliminar = Button(ventana, text="❌ELIMINAR PRIMERO❌", command=eliminar_ultimo_final, font=("impact", 16), bg="#137bc0", fg="#FF0000", relief="raised", border=5)
     eliminar.place(x=55, y=295, width=220, height=45)
 
+def eliminar_codigo_final(codigo):
+    if codigo == "":
+        return None
+    usuario = cola.eliminar_codigo(int(codigo))
+    if usuario == None:
+        return None
+    return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR CODIGO🔍")
+
+def comando_eliminar_codigo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CODIGO🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_codigo = Label(ventana, text="✅CODIGO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_codigo.place(x=15, y=70, width=140, height=40)
+
+    entry_codigo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_codigo.place(x=170, y=70, width=160, height=40)
+
+    codigo_boton = Button(ventana, text="❌ELIMINAR CODIGO❌", command=lambda: eliminar_codigo_final(entry_codigo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    codigo_boton.place(x=55, y=120, width=230, height=45)
+
+def comando_eliminar_especifico():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x410")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="❌ELIMINAR USUARIO❌", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    eliminar_codigo = Button(ventana, text="❌ELIMINAR CODIGO❌", command=comando_eliminar_codigo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminar_codigo.place(x=55, y=70, width=230, height=45)
+    
+    eliminar_nombre = Button(ventana, text="❌ELIMINAR NOMBRE❌", command=comando_buscar_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminar_nombre.place(x=55, y=125, width=230, height=45)
+    
+    eliminiar_apellido = Button(ventana, text="❌ELIMINAR APELLIDO❌", command=comando_buscar_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_apellido.place(x=55, y=180, width=230, height=45)
+    
+    eliminiar_correo = Button(ventana, text="❌ELIMINAR EMAIL❌", command=comando_buscar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_correo.place(x=55, y=235, width=230, height=45)
+    
+    eliminar_telefono = Button(ventana, text="❌ELIMINAR TELEFONO❌", command=comando_buscar_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminar_telefono.place(x=55, y=290, width=230, height=45)
+    
+    eliminiar_boton = Button(ventana, text="❌ELIMINAR CATEGORIA❌", command=comando_buscar_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_boton.place(x=55, y=345, width=230, height=45)
+    pass
 def comando_eliminar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
@@ -218,7 +456,7 @@ def comando_eliminar():
     ultimo_boton = Button(ventana, text="❌ELIMINAR ULTIMO❌", command=comando_eliminar_ultimo, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     ultimo_boton.place(x=55, y=125, width=230, height=45)
     
-    especifico_boton = Button(ventana, text="❌ELIMINAR ESPECIFICO❌", command=comando_agregar, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    especifico_boton = Button(ventana, text="❌ELIMINAR ESPECIFICO❌", command=comando_eliminar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     especifico_boton.place(x=55, y=180, width=230, height=45)
 
 #MODIFICAR(UPDATE)
@@ -279,13 +517,13 @@ def ascendente_final():
     registro = cola.mostrar_agenda_frente()
     if registro == None:
         return None
-    mostrar(registro)
+    mostrar(registro, "📁AGENDA VIRTUAL📁")
 
 def descendente_final():
     registro = cola.mostrar_ageneda_ultimo()
     if registro == None:
         return None
-    mostrar(registro)
+    mostrar(registro, "📁AGENDA VIRTUAL📁")
 
 def comando_mostrar():
     ventana = Tk()

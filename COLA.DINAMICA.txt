@@ -1,0 +1,220 @@
+→ COLA DINAMICA
+IMPLEMENTACION → LISTA DOBLEMENTE ENLAZADA
+
+→ LISTA DOBLEMENTE ENLAZADA
+NODO → [OBJETO, SIGUIENTE, ANTERIOR]
+obejeto = objeto 
+siguiente = None
+anterior = None
+
+→ CLASE COLA
+frente = None
+ultimo = None
+tamaño = 0
+
+→ ENCOLAR → ENQUEUE → A
+
+→ ESTADO INICIAL
+frente = None
+ultimo = None
+tamaño = 0
+
+→ CREAR NUEVO NODO
+nuevo = Nodo[A]
+
+→ VISUAL
+[A | None | None]
+
+→ COLA VACIA
+frente = nuevo
+ultimo = nuevo
+
+→ VISUAL
+frente → [A | None | None] 
+ultimo → [A | None | None] 
+
+tamaño += 1
+
+→ ESTADO FINAL
+frente → [A | None | None] ← ultimo
+frente = Nodo[A | None | None]
+ultimo = Nodo[A | None | None]
+tamaño = 1
+
+→ ENCOLAR → ENQUEUE → B
+
+→ ESTADO INICIAL
+frente → [A | None | None] ← ultimo
+frente = Nodo[A | None | None]
+ultimo = Nodo[A | None | None]
+tamaño = 1
+
+→ CREAR NUEVO NODO
+nuevo = Nodo[B]
+
+→VISUAL
+[B | None | None]
+
+→ COLA !→ 0
+ultimo → siguiente = nuevo
+
+→ VISUAL
+[A | B | None] → [B | None | None]
+frente → [A | B | None] 
+ultimo → [A | B | None] 
+
+nuevo → anterior = ultimo
+
+→ VISUAL
+[A | B | None] → [B | None | A]
+frente → [A | B | None] 
+ultimo → [A | B | None] 
+
+ultimo = nuevo
+
+→ VISUAL
+ultimo → Nodo[B | None | A]
+
+→ ESTADO FINAL
+frente → [A | B | None] ←→ [B | None | A] ← ultimo
+frente → Nodo[A | B | None ] 
+ultimo = Nodo[B | None | A]
+tamaño = 2
+
+→ ENCOLAR → ENQUEUE → C
+
+→ ESTADO INICIAL
+frente → [A | B | None] ←→ [B | None | A] ← ultimo
+frente → Nodo[A | B | None ] 
+ultimo = Nodo[B | None | A]
+tamaño = 2
+
+→ CREAR NUEVO NODO
+nuevo = Nodo[C]
+
+→VISUAL
+[C | None | None]
+
+→ COLA !→ 0
+ultimo → siguiente = nuevo
+
+→ VISUAL
+[A | B | None] → [B | C | A] → [C | None | None]
+frente → Nodo[A | B | None] 
+ultimo → Nodo[B | C | A] 
+
+nuevo → anterior = ultimo 
+
+→ VISUAL
+[A | B | None] → [B | C | A] → [C | None | B]
+frente → Nodo[A | B | None] 
+ultimo → Nodo[B | C | A] 
+
+ultimo =  nuevo 
+tamaño += 1
+tamaño = 3
+
+→ VISUAL
+ultimo → Nodo[C | None | B]
+
+→ ESTADO FINAL
+frente → [A | B | None] ←→ [B | C | A] ←→ [C | None | B] ← ultimo
+frente → Nodo[A | B | None] 
+ultimo = Nodo[C | None | B]
+tamaño = 3
+
+→ ENCOLAR → ENQUEUE → D
+
+→ CREAR NUEVO NODO
+nuevo = Nodo[D]
+
+→ VISUAL
+[D | None | None]
+
+→ COLA !→ 0
+ultimo → siguiente = nuevo
+
+→ VISUAL
+[A | B | None] ←→ [B | C | A] ←→ [C | D | B] →  [D | None | None]
+frente → Nodo[A | B | None] 
+ultimo = Nodo[C | C | D]
+
+nuevo → anterior = ultimo
+[A | B | None] ←→ [B | C | A] ←→ [C | D | B] →  [D | None | C]
+frente → Nodo[A | B | None] 
+ultimo = Nodo[C | C | D]
+
+ultimo = nuevo
+tamaño += 1
+tamaño = 4
+
+→ VISUAL
+ultimo → Nodo[D | None | C]
+
+→ ESTADO FINAL
+frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | None | C] ← ultimo
+frente → Nodo[A | B | None]
+ultimo → Nodo[D | None | C]
+
+→ ENCOLAR → ENQUEUE → E
+
+→ CREAR NUEVO NODO
+nuevo = Nodo[E]
+
+→ VISUAL
+[E | None | None]
+
+→ COLA !→ 0
+ultimo → siguiente = nuevo
+
+→ VISUAL
+[A | B | None] ←→ [B | C | A] ←→ [C | D | B] ←→ [D | E | C]→[E | None | None]
+frente → Nodo[A | B | None] 
+ultimo = Nodo[D | E | C]
+
+nuevo → anterior = ultimo 
+
+→ VISUAL
+[A | B | None] ←→ [B | C | A] ←→ [C | D | B] ←→ [D | E | None]→[E | None | D]
+frente → Nodo[A | B | None] 
+ultimo = Nodo[D | E | C]
+
+ultimo =  nuevo 
+tamaño += 1
+tamaño = 5
+
+→ VISUAL
+ultimo → Nodo[E | None | D]
+
+→ ESTADO FINAL
+frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
+frente → Nodo[A | B | None] 
+ultimo → Nodo[E | None | D]
+tamaño = 5
+
+→ DESENCOLAR  → DEQUEUE
+
+→ ESTADO INICIAL
+frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
+frente → Nodo[A | B | None] 
+ultimo → Nodo[E | None | D]
+tamaño = 5
+
+frente = frente → siguiente
+
+→ VISUAL 
+frente → Nodo[B | C | A ]
+
+→ COLA !→ 0
+frente → anterior = None
+tamaño -= 1
+
+→ VISUAL
+frente → Nodo[B | C | None]
+
+→ ESTADO FINAL 
+frente → [B | C | None ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
+frente → Nodo[B | C | None] 
+ultimo → Nodo[E | None | D]
+tamaño = 4
+

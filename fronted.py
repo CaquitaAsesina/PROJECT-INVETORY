@@ -16,13 +16,15 @@ def interfaz_encolar(registro, id):
     mensaje = Label(ventana, text=f"Numero de registro: {id}", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
+    ventana.after(1000, ventana.destroy)
+
 #MOSTRAR(SHOW)
-def mostrar(datos_agenda):
+def mostrar(datos_agenda, titulo):
     ventana = Toplevel()
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("400x500")
     ventana.configure(bg="#a3b1c6")
-    titulo = Label(ventana, text="📁AGENDA VIRTUAL📁", font=("impact", 20), bg="#ffffff", fg="#E0D315", relief="groove", border=2)
+    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#E0D315", relief="groove", border=2)
     titulo.pack(pady=10)
     marco_principal = Frame(ventana, bg="#a3b1c6")
     marco_principal.pack(fill="both", expand=True, padx=20, pady=10)
@@ -73,4 +75,35 @@ def interfaz_buscar_ultimo(usuario):
     mensaje = Label(ventana, text="🔍USUARIO ENCONTRADO🔎", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
+def interfaz_buscar_especifico(usuario, titulo):
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
+    usuario.place(x=35, y=70, width=270, height=215)
+
+    mensaje = Label(ventana, text="🔍USUARIO ENCONTRADO🔎", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje.place(x=45, y=295, width=250, height=45)
+
+
 #ELIMINAR(DELETE)
+def interfaz_eliminar_especifico(usuario, titulo):
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
+    usuario.place(x=35, y=70, width=270, height=215)
+
+    mensaje = Label(ventana, text="❌USUARIO ELIMINADO❌", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje.place(x=45, y=295, width=250, height=45)
+
