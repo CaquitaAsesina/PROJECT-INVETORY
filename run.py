@@ -127,7 +127,7 @@ def comando_buscar_ultimo():
 def comando_buscar_primero():
     usuario = cola.mostrar_frente()
     if usuario == None:
-        return interfaz_error("❌NO HYA REGISTROS❌")
+        return interfaz_error("❌NO HAY REGISTROS❌")
     return interfaz_buscar_primero(usuario)
 
 def buscar_codigo_final(codigo):
@@ -606,10 +606,28 @@ def comando_eliminar():
     
     especifico_boton = Button(ventana, text="❌ELIMINAR ESPECIFICO❌", command=comando_eliminar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     especifico_boton.place(x=55, y=180, width=230, height=45)
+    
+#MODIFICAR(UPDATE) 
+def comando_modificar_primero():
+    pass
 
-#MODIFICAR(UPDATE)
+def comando_modificar():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x240")
+    ventana.configure(bg="#a3b1c6")
 
+    titulo = Label(ventana, text="🔒MODIFICAR USUARIO🔒", font=("impact", 20), bg="#137bc0", fg="#FF0000", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
 
+    primero_boton = Button(ventana, text="🔒MODIFICAR PRIMERO🔒", command=comando_eliminar_primero, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    primero_boton.place(x=55, y=70, width=230, height=45)
+
+    ultimo_boton = Button(ventana, text="🔒MODIFICAR ULTIMO🔒", command=comando_eliminar_ultimo, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    ultimo_boton.place(x=55, y=125, width=230, height=45)
+    
+    especifico_boton = Button(ventana, text="🔒MODIFICAR ESPECIFICO🔒", command=comando_eliminar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    especifico_boton.place(x=55, y=180, width=230, height=45)
 
 #LIMPIAR(CLEAN)
 def limpiar_final():
@@ -705,7 +723,7 @@ buscar_boton.place(x=55, y=125, width=230, height=45)
 eliminar_boton = Button(ventana, text="ELIMINAR USUARIO⛔", command=comando_eliminar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
 eliminar_boton.place(x=55, y=180, width=230, height=45)
 
-modificar_boton = Button(ventana, text="MODIFICAR USUARIO🔓", command=comando_agregar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+modificar_boton = Button(ventana, text="MODIFICAR USUARIO🔓", command=comando_modificar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
 modificar_boton.place(x=55, y=235, width=230, height=45)
 
 limpiar_boton = Button(ventana, text="LIMPIAR AGENDA🗑️", command=comando_limpiar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)

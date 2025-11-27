@@ -120,5 +120,8 @@ def interfaz_error(message):
     usuario.place(x=35, y=70, width=270, height=50)
 
     ventana.after(1000, ventana.destroy)
+
+def interzas_modificar_especifico(usuario, codigo):
+    pass
     
     
