@@ -192,7 +192,7 @@ frente → Nodo[A | B | None]
 ultimo → Nodo[E | None | D]
 tamaño = 5
 
-→ DESENCOLAR  → DEQUEUE
+→ DESENCOLAR PRIMERO → DEQUEUE
 
 → ESTADO INICIAL
 frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
@@ -218,3 +218,48 @@ frente → Nodo[B | C | None]
 ultimo → Nodo[E | None | D]
 tamaño = 4
 
+→ DESENCOLAR PRIMERO → DEQUEUE
+
+→ ESTADO INICIAL
+frente → [B | C | None ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
+frente → Nodo[B | C | None] 
+ultimo → Nodo[E | None | D]
+tamaño = 4
+
+frente = frente → siguiente
+
+→ VISUAL
+frente → Nodo[C | D | B]
+
+→ COLA !→ 0
+frente → anterior = None
+tamaño -= 1
+
+→ VISUAL
+frente → Nodo[C | D | None]
+
+
+→ ESTADO FINAL 
+frente → [C | D | None] ←→ [D | E | C] → [E | None | D] ← ultimo
+frente → Nodo[C | D | None]
+ultimo → Nodo[E | None | D]
+tamaño = 3
+
+→ LIMPIAR COLA → CLEAN
+
+→ ESTADO INICIAL 
+frente → [C | D | None] ←→ [D | E | C] → [E | None | D] ← ultimo
+frente → Nodo[C | D | None]
+ultimo → Nodo[E | None | D]
+tamaño = 3
+
+→ COLA !→ 0
+tamaño = 0
+frente = None
+ultimo = None
+
+→ ESTADO FINAL
+ frente → [None]← ultimo
+ frente → None
+ultimo → None
+tamaño = 0
