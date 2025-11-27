@@ -107,3 +107,18 @@ def interfaz_eliminar_especifico(usuario, titulo):
     mensaje = Label(ventana, text="❌USUARIO ELIMINADO❌", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
+def interfaz_error(message):
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x130")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="⛔PROBLEMA DETECTADO⛔", font=("impact", 20), bg="#3fc4f8", fg="#F30000", relief="groove", border=2)
+    titulo.place(x=11, y=15, width=320, height=45)
+
+    usuario= Label(ventana, text=message, font=("Segoe U", 12), bg="#ACBEF0", fg="#FF0000", relief="groove", border=2)
+    usuario.place(x=35, y=70, width=270, height=50)
+
+    ventana.after(1000, ventana.destroy)
+    
+    

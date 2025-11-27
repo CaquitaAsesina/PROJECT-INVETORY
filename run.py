@@ -1,18 +1,20 @@
 from clase import Sistema
 from tkinter import Button, Entry, Label, Tk, Frame, Canvas, Scrollbar, Toplevel
 from cola import Cola
-from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico
+from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico, interfaz_error
 import random
 cola = Cola()
 
 #AGREGAR(SAVE)
 def agregar_final(codigo, nombre, apellido, correo, telefono, categoria, ventana):
     if codigo == "" or nombre == "" or apellido == "" or correo == "" or telefono == "" or categoria == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not codigo.isdigit():
+        return interfaz_error("❌INGRESE DATOS BIEN❌")
     registro = Sistema(int(codigo), nombre, apellido, correo, int(telefono), categoria)
     usuario = cola.encolar(registro)
     if usuario == None:
-        return None
+        return interfaz_error("❌CODIDO DUPLICADO❌")
     ventana.destroy()
     return interfaz_encolar(usuario, usuario.getCodigo())
 
@@ -119,21 +121,23 @@ def comando_agregar():
 def comando_buscar_ultimo():
     usuario = cola.mostrar_ultimo()
     if usuario == None:
-        return None
+        return interfaz_error("❌NO HAY REGISTROS❌")
     return interfaz_buscar_ultimo(usuario)
 
 def comando_buscar_primero():
     usuario = cola.mostrar_frente()
     if usuario == None:
-        return None
+        return interfaz_error("❌NO HYA REGISTROS❌")
     return interfaz_buscar_primero(usuario)
 
 def buscar_codigo_final(codigo):
     if codigo == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not codigo.isdigit():
+        return interfaz_error("❌NO USAR CARACTERES❌")
     usuario = cola.busca_codigo(int(codigo))
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL CODIGO❌")
     return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA CODIGO🔎")
 
 def comando_buscar_codigo():
@@ -156,10 +160,12 @@ def comando_buscar_codigo():
 
 def buscar_nombre_final(nombre):
     if nombre == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not nombre.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.busca_nombre(nombre)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL NOMBRE❌")
     return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA NOMBRE🔎")
 
 def comando_buscar_nombre():
@@ -182,10 +188,12 @@ def comando_buscar_nombre():
     
 def buscar_apellido_final(apellido):
     if apellido == "":
-        return None
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    elif not apellido.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.busca_apellido(apellido)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL APELLIDO❌")
     return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA APELLIDO🔎")
     
 def comando_buscar_apellido():
@@ -208,10 +216,12 @@ def comando_buscar_apellido():
 
 def buscar_correo_final(correo):
     if correo == "":
-        return None
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    elif not correo.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.busca_correo(correo)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL CORREO❌")
     return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA CORREO🔎")
 
 def comando_buscar_correo():
@@ -234,10 +244,12 @@ def comando_buscar_correo():
 
 def buscar_telefono_final(telefono):
     if telefono == "":
-        return None
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    elif not telefono.isdigit():
+        return interfaz_error("❌NO USAR CARACTERES❌")
     usuario = cola.busca_telefono(int(telefono))
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL TELEFONO❌")
     return interfaz_buscar_especifico(usuario, "🔍BUSQUEDA TELEFONO🔎")
 
 def comando_buscar_telefono():
@@ -260,10 +272,12 @@ def comando_buscar_telefono():
     
 def buscar_categoria_final(categoria):
     if categoria == "":
-        return None
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    elif not categoria.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     registros = cola.busca_categoria(categoria)
     if registros == None:
-        return None
+        return interfaz_error("❌NO EXISTE LA CATEGORIA❌")
     return mostrar(registros, "🔍BUSCAR CATEGORIA🔎")
     
 def comando_buscar_categoria():
@@ -335,13 +349,13 @@ def comando_buscar():
 def eliminar_primero_final():
     usuario = cola.desencolar()
     if usuario == None:
-        return None
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
     return usuario
 
 def comando_eliminar_primero():
     usuario = cola.mostrar_frente()
     if usuario == None:
-        return None
+        return interfaz_error("❌NO HAY REGISTROS❌")
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("340x350")
@@ -359,13 +373,13 @@ def comando_eliminar_primero():
 def eliminar_ultimo_final():
     usuario = cola.desencolar_ultimo()
     if usuario == None:
-        return None
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
     return usuario
 
 def comando_eliminar_ultimo():
     usuario = cola.mostrar_ultimo()
     if usuario == None:
-        return None
+        return interfaz_error("❌NO HAY REGISTROS❌")
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("340x350")
@@ -382,10 +396,12 @@ def comando_eliminar_ultimo():
 
 def eliminar_codigo_final(codigo):
     if codigo == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not codigo.isdigit():
+        return interfaz_error("❌NO USAR CARACTERES❌")
     usuario = cola.eliminar_codigo(int(codigo))
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL CODIGO❌")
     return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR CODIGO🔍")
 
 def comando_eliminar_codigo():
@@ -408,12 +424,13 @@ def comando_eliminar_codigo():
 
 def eliminar_nombre_final(nombre):
     if nombre == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not nombre.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.eliminar_nombre(nombre)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL NOMBRE❌")
     return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR NOMBRE🔍")
-
 
 def comando_eliminar_nombre():
     ventana = Tk()
@@ -435,10 +452,12 @@ def comando_eliminar_nombre():
 
 def eliminar_apellido_final(apellido):
     if apellido == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not apellido.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.eliminar_apellido(apellido)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL APELLIDO❌")
     return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR APELLIDO🔍")
 
 def comando_eliminar_apellido():
@@ -461,10 +480,12 @@ def comando_eliminar_apellido():
 
 def eliminar_correo_final(correo):
     if correo == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not correo.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuario = cola.eliminar_correo(correo)
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL CORREO❌")
     return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR CORREO🔍")
 
 def comando_eliminar_correo():
@@ -487,10 +508,12 @@ def comando_eliminar_correo():
 
 def eliminar_telefono_final(telefono):
     if telefono == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not telefono.isdigit():
+        return interfaz_error("❌NO USAR CARACTERES❌")
     usuario = cola.eliminar_telefono(int(telefono))
     if usuario == None:
-        return None
+        return interfaz_error("❌NO EXISTE EL TELEFONO❌")
     return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR TELEFONO🔍")
 
 def comando_eliminar_telefono():
@@ -513,10 +536,12 @@ def comando_eliminar_telefono():
 
 def eliminar_categoria_final(categoria):
     if categoria == "":
-        return None
+        return interfaz_error("❌COMPLETA LOS DATOS❌")
+    elif not categoria.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
     usuarios = cola.eliminar_categoria(categoria)
     if usuarios == None:
-        return None
+        return interfaz_error("❌NO EXISTE LA CATEGORIA❌")
     return mostrar(usuarios, "🔍ELIMINAR CATEGORIA🔍")
 
 def comando_eliminar_categoria():
@@ -590,13 +615,13 @@ def comando_eliminar():
 def limpiar_final():
     limpiar = cola.limpiar_cola()
     if limpiar == None:
-        return None
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
     return limpiar
 
 def comando_limpiar():
-    datos_agenda = cola.mostrar_agenda_frente()
+    datos_agenda = cola.mostrar_agenda()
     if datos_agenda == None:
-        return None
+        return interfaz_error("❌NO HAY REGISTROS❌")
     
     ventana = Toplevel()
     ventana.title("AGENDA VIRTUAL")
@@ -639,13 +664,13 @@ def comando_limpiar():
 def ascendente_final():
     registro = cola.mostrar_agenda()
     if registro == None:
-        return None
+        return interfaz_error("❌NO HAY REGISTROS❌")
     mostrar(registro, "📁AGENDA VIRTUAL📁")
 
 def descendente_final():
     registro = cola.mostrar_ageneda_ultimo()
     if registro == None:
-        return None
+        return interfaz_error("❌ NO HAY REGISTROS❌")
     mostrar(registro, "📁AGENDA VIRTUAL📁")
 
 def comando_mostrar():

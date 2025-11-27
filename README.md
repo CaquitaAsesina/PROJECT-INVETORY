@@ -5,7 +5,7 @@
 📌 DESCRIPCION:
 Sistema de agenda virtual desarrollado en Python que permite gestionar contactos utilizando una estructura de datos de cola con listas doblemente enlazadas. La aplicación cuenta con una interfaz gráfica intuitiva para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los registros de contactos.
 
-📂 ESTRUCTURA DEL PROYECTO:
+📂 ESTRUCTURA DEL PROYECTO:
 
 🔧 Clases Principales 
 
@@ -94,5 +94,3 @@ Implementa una cola con operaciones completas:
 ☑️ mostrar_ultimo(): Muestra el ultimo contacto registrado
 
 ☑️ mostrar_agenda_ultimo(): Muestra los contactos desde el final
-
-

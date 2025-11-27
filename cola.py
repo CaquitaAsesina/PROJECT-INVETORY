@@ -118,12 +118,15 @@ class Cola:
         return registro
     
     def eliminar_codigo(self, codigo):
+        if self.esta_vacia():
+            return None
         actual = self.frente
         while actual != None:
             if actual.registro.getCodigo() == codigo:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente != None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
@@ -135,18 +138,20 @@ class Cola:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
-                return actual.registro
-            return actual.registro
+                return usuario
         actual = actual.siguiente
         return None
     
     def eliminar_nombre(self, nombre):
+        if self.esta_vacia():
+            return None
         actual = self.frente
         while actual != None:
             if actual.registro.getNombre() == nombre:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente != None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
@@ -158,18 +163,20 @@ class Cola:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
-                return actual.registro
-            return actual.registro
+                return usuario
         actual = actual.siguiente
         return None
     
     def eliminar_apellido(self, apellido):
+        if self.esta_vacia():
+            return None
         actual = self.frente
         while actual != None:
             if actual.registro.getApellido() == apellido:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente != None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
@@ -181,18 +188,20 @@ class Cola:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
-                return actual.registro
-            return actual.registro
+                return usuario
         actual = actual.siguiente
         return None
     
     def eliminar_correo(self, correo):
+        if self.esta_vacia():
+            return None
         actual = self.frente
         while actual != None:
             if actual.registro.getCorreo() == correo:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente != None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
@@ -204,18 +213,20 @@ class Cola:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
-                return actual.registro
-            return actual.registro
+                return usuario
         actual = actual.siguiente
         return None
     
     def eliminar_telefono(self, telefono):
+        if self.esta_vacia():
+            return None
         actual = self.frente
         while actual != None:
             if actual.registro.getTelefono() == telefono:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente != None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
@@ -227,35 +238,40 @@ class Cola:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
-                return actual.registro
-            return actual.registro
+                return usuario
         actual = actual.siguiente
         return None
     
     def eliminar_categoria(self, categoria):
+        if self.esta_vacia():
+            return None
+        usuarios = []
         actual = self.frente
-        registros = []
-        while actual != None:
-            siguiente = actual.siguiente
+        while actual is not None:
+            siguiente = actual.siguiente  
             if actual.registro.getCategoria() == categoria:
+                usuario = actual.registro
                 if actual == self.frente:
                     self.frente = actual.siguiente
-                    if self.frente:
+                    if self.frente is not None:
                         self.frente.anterior = None
                     else:
                         self.ultimo = None
                 elif actual == self.ultimo:
                     self.ultimo = actual.anterior
-                    self.ultimo.siguiente = None
+                    if self.ultimo is not None:
+                        self.ultimo.siguiente = None
                 else:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
+    
                 self.tamaño -= 1
-                registros.append(actual.registro)
+                usuarios.append(usuario)
             actual = siguiente
-        if registros == None:
+        if not usuarios:
             return None
-        return registros
+        return usuarios
+
 
     #MOSTRAR (SHOW)
     def mostrar_frente(self):
@@ -295,3 +311,4 @@ class Cola:
         self.tamaño = 0
         self.frente = None
         self.ultimo = None
+        return 1
