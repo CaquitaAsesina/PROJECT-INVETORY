@@ -333,7 +333,7 @@ def comando_buscar():
 
 #ELIMINAR(DELETE)
 def eliminar_primero_final():
-    usuario = cola.desencolar_primero()
+    usuario = cola.desencolar()
     if usuario == None:
         return None
     return usuario
@@ -637,7 +637,7 @@ def comando_limpiar():
 
 #MOSTRAR(SHOW)
 def ascendente_final():
-    registro = cola.mostrar_agenda_frente()
+    registro = cola.mostrar_agenda()
     if registro == None:
         return None
     mostrar(registro, "📁AGENDA VIRTUAL📁")

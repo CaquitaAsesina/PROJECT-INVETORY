@@ -93,7 +93,7 @@ class Cola:
         return registros
     
     #ELIMINAR (DEQUEUE)
-    def desencolar_primero(self):
+    def desencolar(self):
         if self.esta_vacia():
             return None
         registro = self.frente.registro
@@ -268,7 +268,7 @@ class Cola:
             return None
         return self.ultimo.registro
     
-    def mostrar_agenda_frente(self):
+    def mostrar_agenda(self):
         if self.esta_vacia():
             return None
         actual = self.frente
