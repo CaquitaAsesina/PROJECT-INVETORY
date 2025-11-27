@@ -124,7 +124,7 @@ class Cola:
                 if actual == self.frente:
                     self.frente = actual.siguiente
                     if self.frente:
-                        self.frente.anterio = None
+                        self.frente.anterior = None
                     else:
                         self.ultimo = None
                 elif actual == self.ultimo:
@@ -139,6 +139,123 @@ class Cola:
             return actual.registro
         actual = actual.siguiente
         return None
+    
+    def eliminar_nombre(self, nombre):
+        actual = self.frente
+        while actual != None:
+            if actual.registro.getNombre() == nombre:
+                if actual == self.frente:
+                    self.frente = actual.siguiente
+                    if self.frente:
+                        self.frente.anterior = None
+                    else:
+                        self.ultimo = None
+                elif actual == self.ultimo:
+                    self.ultimo = actual.anterior
+                    self.ultimo.siguiente =None
+                
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                self.tamaño -= 1
+                return actual.registro
+            return actual.registro
+        actual = actual.siguiente
+        return None
+    
+    def eliminar_apellido(self, apellido):
+        actual = self.frente
+        while actual != None:
+            if actual.registro.getApellido() == apellido:
+                if actual == self.frente:
+                    self.frente = actual.siguiente
+                    if self.frente:
+                        self.frente.anterior = None
+                    else:
+                        self.ultimo = None
+                elif actual == self.ultimo:
+                    self.ultimo = actual.anterior
+                    self.ultimo.siguiente =None
+                
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                self.tamaño -= 1
+                return actual.registro
+            return actual.registro
+        actual = actual.siguiente
+        return None
+    
+    def eliminar_correo(self, correo):
+        actual = self.frente
+        while actual != None:
+            if actual.registro.getCorreo() == correo:
+                if actual == self.frente:
+                    self.frente = actual.siguiente
+                    if self.frente:
+                        self.frente.anterior = None
+                    else:
+                        self.ultimo = None
+                elif actual == self.ultimo:
+                    self.ultimo = actual.anterior
+                    self.ultimo.siguiente =None
+                
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                self.tamaño -= 1
+                return actual.registro
+            return actual.registro
+        actual = actual.siguiente
+        return None
+    
+    def eliminar_telefono(self, telefono):
+        actual = self.frente
+        while actual != None:
+            if actual.registro.getTelefono() == telefono:
+                if actual == self.frente:
+                    self.frente = actual.siguiente
+                    if self.frente:
+                        self.frente.anterior = None
+                    else:
+                        self.ultimo = None
+                elif actual == self.ultimo:
+                    self.ultimo = actual.anterior
+                    self.ultimo.siguiente =None
+                
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                self.tamaño -= 1
+                return actual.registro
+            return actual.registro
+        actual = actual.siguiente
+        return None
+    
+    def eliminar_categoria(self, categoria):
+        actual = self.frente
+        registros = []
+        while actual != None:
+            siguiente = actual.siguiente
+            if actual.registro.getCategoria() == categoria:
+                if actual == self.frente:
+                    self.frente = actual.siguiente
+                    if self.frente:
+                        self.frente.anterior = None
+                    else:
+                        self.ultimo = None
+                elif actual == self.ultimo:
+                    self.ultimo = actual.anterior
+                    self.ultimo.siguiente = None
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                self.tamaño -= 1
+                registros.append(actual.registro)
+            actual = siguiente
+        if registros == None:
+            return None
+        return registros
 
     #MOSTRAR (SHOW)
     def mostrar_frente(self):

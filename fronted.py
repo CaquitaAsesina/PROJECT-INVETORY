@@ -1,4 +1,4 @@
-from tkinter import Label, Tk, Frame, Canvas, Scrollbar, Toplevel, Button
+from tkinter import Label, Tk, Frame, Canvas, Scrollbar, Toplevel
 
 #AGREGAR(SAVE)
 def interfaz_encolar(registro, id):

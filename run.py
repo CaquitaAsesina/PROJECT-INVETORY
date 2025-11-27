@@ -5,7 +5,6 @@ from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz
 import random
 cola = Cola()
 
-
 #AGREGAR(SAVE)
 def agregar_final(codigo, nombre, apellido, correo, telefono, categoria, ventana):
     if codigo == "" or nombre == "" or apellido == "" or correo == "" or telefono == "" or categoria == "":
@@ -69,14 +68,7 @@ def comando_agregar():
     dic_categoria = [
     "AMIGO",
     "FAMILIA",
-    "TRABAJO",
-    "EMERGENCIA",
-    "VECINO",
-    "ESTUDIO",
-    "CLIENTE",
-    "PROVEEDOR",
-    "SERVICIO",
-    "OTRO"
+    "TRABAJO"
     ]
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
@@ -311,7 +303,7 @@ def comando_buscar_especifico():
     buscar_apellido = Button(ventana, text="🔍BUSCAR APELLIDO🔎", command=comando_buscar_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     buscar_apellido.place(x=55, y=180, width=230, height=45)
     
-    buscar_correo = Button(ventana, text="🔍BUSCAR EMAIL🔎", command=comando_buscar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    buscar_correo = Button(ventana, text="🔍BUSCAR CORREO🔎", command=comando_buscar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     buscar_correo.place(x=55, y=235, width=230, height=45)
     
     buscar_telefono = Button(ventana, text="🔍BUSCAR TELEFONO🔎", command=comando_buscar_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
@@ -414,33 +406,164 @@ def comando_eliminar_codigo():
     codigo_boton = Button(ventana, text="❌ELIMINAR CODIGO❌", command=lambda: eliminar_codigo_final(entry_codigo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     codigo_boton.place(x=55, y=120, width=230, height=45)
 
+def eliminar_nombre_final(nombre):
+    if nombre == "":
+        return None
+    usuario = cola.eliminar_nombre(nombre)
+    if usuario == None:
+        return None
+    return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR NOMBRE🔍")
+
+
+def comando_eliminar_nombre():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR NOMBRE🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_nombre = Label(ventana, text="✅NOMBRE:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_nombre.place(x=15, y=70, width=140, height=40)
+
+    entry_nombre = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_nombre.place(x=170, y=70, width=160, height=40)
+
+    nombre_boton = Button(ventana, text="❌ELIMINAR NOMBRE❌", command=lambda: eliminar_nombre_final(entry_nombre.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    nombre_boton.place(x=55, y=120, width=230, height=45)
+
+def eliminar_apellido_final(apellido):
+    if apellido == "":
+        return None
+    usuario = cola.eliminar_apellido(apellido)
+    if usuario == None:
+        return None
+    return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR APELLIDO🔍")
+
+def comando_eliminar_apellido():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR APELLIDO🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_apellido = Label(ventana, text="✅APELLIDO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_apellido.place(x=15, y=70, width=140, height=40)
+
+    entry_apellido = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_apellido.place(x=170, y=70, width=160, height=40)
+
+    apellido_boton = Button(ventana, text="❌ELIMINAR APELLIDO❌", command=lambda: eliminar_apellido_final(entry_apellido.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    apellido_boton.place(x=55, y=120, width=230, height=45)
+
+def eliminar_correo_final(correo):
+    if correo == "":
+        return None
+    usuario = cola.eliminar_correo(correo)
+    if usuario == None:
+        return None
+    return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR CORREO🔍")
+
+def comando_eliminar_correo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CORREO🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_correo = Label(ventana, text="✅CORREO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_correo.place(x=15, y=70, width=140, height=40)
+
+    entry_correo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_correo.place(x=170, y=70, width=160, height=40)
+
+    correo_boton = Button(ventana, text="❌ELIMINAR CORREO❌", command=lambda: eliminar_correo_final(entry_correo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    correo_boton.place(x=55, y=120, width=230, height=45)
+
+def eliminar_telefono_final(telefono):
+    if telefono == "":
+        return None
+    usuario = cola.eliminar_telefono(int(telefono))
+    if usuario == None:
+        return None
+    return interfaz_eliminar_especifico(usuario, "🔍ELIMINAR TELEFONO🔍")
+
+def comando_eliminar_telefono():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR TELEFONO🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_telefono = Label(ventana, text="✅TELEFONO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_telefono.place(x=15, y=70, width=140, height=40)
+
+    entry_telefono = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_telefono.place(x=170, y=70, width=160, height=40)
+
+    telefono_boton = Button(ventana, text="❌ELIMINAR TELEFONO❌", command=lambda: eliminar_telefono_final(entry_telefono.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    telefono_boton.place(x=55, y=120, width=230, height=45)
+
+def eliminar_categoria_final(categoria):
+    if categoria == "":
+        return None
+    usuarios = cola.eliminar_categoria(categoria)
+    if usuarios == None:
+        return None
+    return mostrar(usuarios, "🔍ELIMINAR CATEGORIA🔍")
+
+def comando_eliminar_categoria():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍BUSCAR CATEGORIA🔍", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    label_categoria = Label(ventana, text="✅CATEGORIA:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_categoria.place(x=15, y=70, width=140, height=40)
+
+    entry_categoria = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_categoria.place(x=170, y=70, width=160, height=40)
+
+    categoria_boton = Button(ventana, text="❌ELIMINAR CATEGORIA❌", command=lambda: eliminar_categoria_final(entry_categoria.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    categoria_boton.place(x=55, y=120, width=230, height=45)
+
 def comando_eliminar_especifico():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("340x410")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text="❌ELIMINAR USUARIO❌", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text="❌ELIMINAR USUARIO❌", font=("impact", 20), bg="#ffffff", fg="#DB0000", relief="groove", border=2)
     titulo.place(x=20, y=15, width=300, height=45)
 
     eliminar_codigo = Button(ventana, text="❌ELIMINAR CODIGO❌", command=comando_eliminar_codigo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminar_codigo.place(x=55, y=70, width=230, height=45)
     
-    eliminar_nombre = Button(ventana, text="❌ELIMINAR NOMBRE❌", command=comando_buscar_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminar_nombre = Button(ventana, text="❌ELIMINAR NOMBRE❌", command=comando_eliminar_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminar_nombre.place(x=55, y=125, width=230, height=45)
     
-    eliminiar_apellido = Button(ventana, text="❌ELIMINAR APELLIDO❌", command=comando_buscar_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_apellido = Button(ventana, text="❌ELIMINAR APELLIDO❌", command=comando_eliminar_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminiar_apellido.place(x=55, y=180, width=230, height=45)
     
-    eliminiar_correo = Button(ventana, text="❌ELIMINAR EMAIL❌", command=comando_buscar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_correo = Button(ventana, text="❌ELIMINAR CORREO❌", command=comando_eliminar_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminiar_correo.place(x=55, y=235, width=230, height=45)
     
-    eliminar_telefono = Button(ventana, text="❌ELIMINAR TELEFONO❌", command=comando_buscar_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminar_telefono = Button(ventana, text="❌ELIMINAR TELEFONO❌", command=comando_eliminar_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminar_telefono.place(x=55, y=290, width=230, height=45)
     
-    eliminiar_boton = Button(ventana, text="❌ELIMINAR CATEGORIA❌", command=comando_buscar_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    eliminiar_boton = Button(ventana, text="❌ELIMINAR CATEGORIA❌", command=comando_eliminar_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     eliminiar_boton.place(x=55, y=345, width=230, height=45)
-    pass
+
 def comando_eliminar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
