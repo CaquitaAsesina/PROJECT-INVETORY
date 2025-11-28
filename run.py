@@ -1,7 +1,7 @@
 from clase import Sistema
 from tkinter import Button, Entry, Label, Tk, Frame, Canvas, Scrollbar, Toplevel
 from cola import Cola
-from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico, interfaz_error
+from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico, interfaz_error, interfaz_modificar
 import random
 cola = Cola()
 
@@ -298,7 +298,6 @@ def comando_buscar_categoria():
     categoria_boton = Button(ventana, text="✅BUSCAR CATEGORIA✅", command=lambda: buscar_categoria_final(entry_categoria.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     categoria_boton.place(x=55, y=120, width=230, height=45)
 
-
 def comando_buscar_especifico():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
@@ -326,14 +325,13 @@ def comando_buscar_especifico():
     buscar_categoria = Button(ventana, text="🔍BUSCAR CATEGORIA🔎", command=comando_buscar_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
     buscar_categoria.place(x=55, y=345, width=230, height=45)
 
-
 def comando_buscar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("340x240")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text="🔍BUSCAR USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text="🔍BUSCAR USUARIO🔎", font=("impact", 20), bg="#137bc0", fg="#FF0000", relief="groove", border=2)
     titulo.place(x=20, y=15, width=300, height=45)
 
     primero_boton = Button(ventana, text="🔍BUSCAR PRIMERO🔎", command=comando_buscar_primero, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
@@ -606,28 +604,386 @@ def comando_eliminar():
     
     especifico_boton = Button(ventana, text="❌ELIMINAR ESPECIFICO❌", command=comando_eliminar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     especifico_boton.place(x=55, y=180, width=230, height=45)
-    
-#MODIFICAR(UPDATE) 
-def comando_modificar_primero():
-    pass
 
+#MODIFICAR(UPDATE) 
+def modificar_primero_nombre_final(nombre):
+    if nombre == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not nombre.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_frente_nombre(nombre)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅NOMBRE MODIFICADO✅")
+
+def modificar_primero_nombre():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR NOMBRE✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_nombre = Label(ventana, text="✅NOMBRE:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_nombre.place(x=15, y=70, width=140, height=40)
+
+    entry_nombre = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_nombre.place(x=170, y=70, width=160, height=40)
+
+    nombre_boton = Button(ventana, text="🔒MODIFICAR NOMBRE🔒", command=lambda: modificar_primero_nombre_final(entry_nombre.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    nombre_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_primero_apellido_final(apellido):
+    if apellido == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not apellido.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_frente_apellido(apellido)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅APELLIDO MODIFICADO✅")
+
+def modificar_primero_apellido():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR APELLIDO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_apellido = Label(ventana, text="✅APELLIDO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_apellido.place(x=15, y=70, width=140, height=40)
+
+    entry_apellido = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_apellido.place(x=170, y=70, width=160, height=40)
+
+    apellido_boton = Button(ventana, text="🔒MODIFICAR APELLIDO🔒", command=lambda: modificar_primero_apellido_final(entry_apellido.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    apellido_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_primero_correo_final(correo):
+    if correo == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not correo.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_frente_correo(correo)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅CORREO MODIFICADO✅")
+
+def modificar_primero_correo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR CORREO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_correo = Label(ventana, text="✅CORREO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_correo.place(x=15, y=70, width=140, height=40)
+
+    entry_correo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_correo.place(x=170, y=70, width=160, height=40)
+
+    correo_boton = Button(ventana, text="🔒MODIFICAR CORREO🔒", command=lambda: modificar_primero_correo_final(entry_correo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    correo_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_primero_telefono_final(telefono):
+    if telefono == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not telefono.isdigit():
+        return interfaz_error("❌NO CARACTERES❌")
+    usuario = cola.modificar_frente_telefono(telefono)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅TELEFONO MODIFICADO✅")
+
+def modificar_primero_telefono():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR TELEFONO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_telefono = Label(ventana, text="✅TELEFONO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_telefono.place(x=15, y=70, width=140, height=40)
+
+    entry_telefono = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_telefono.place(x=170, y=70, width=160, height=40)
+
+    telefono_boton = Button(ventana, text="🔒MODIFICAR TELEFONO🔒", command=lambda: modificar_primero_telefono_final(entry_telefono.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    telefono_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_primero_categoria_final(categoria):
+    if categoria == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not categoria.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_frente_categoria(categoria)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅CATEGORIA MODIFICADA✅")
+
+def modificar_primero_categoria():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR CATEGORIA✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_categoria = Label(ventana, text="✅CATEGORIA:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_categoria.place(x=15, y=70, width=140, height=40)
+
+    entry_categoria = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_categoria.place(x=170, y=70, width=160, height=40)
+
+    categoria_boton = Button(ventana, text="🔒MODIFICAR CATEGORIA🔒", command=lambda: modificar_primero_categoria_final(entry_categoria.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    categoria_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_primero_final():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔒MODIFICAR USUARIO🔒", font=("impact", 20), bg="#ffffff", fg="#DB0000", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    modifcar_nombre = Button(ventana, text="🔒MODIFICAR NOMBRE🔒", command=modificar_primero_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modifcar_nombre.place(x=55, y=70, width=230, height=45)
+    
+    modificar_apellido = Button(ventana, text="🔒MODIFICAR APELLIDO🔒", command=modificar_primero_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_apellido.place(x=55, y=125, width=230, height=45)
+    
+    modificar_correo = Button(ventana, text="🔒MODIFICAR CORREO🔒", command=modificar_primero_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_correo.place(x=55, y=180, width=230, height=45)
+    
+    modificar_telefono = Button(ventana, text="🔒MODIFICAR TELEFONO🔒", command=modificar_primero_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_telefono.place(x=55, y=235, width=230, height=45)
+    
+    modificar_categoria = Button(ventana, text="🔒MODIFICAR CATEGORIA🔒", command=modificar_primero_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_categoria.place(x=55, y=290, width=230, height=45)
+    
+def comando_modificar_primero():
+    registro = cola.mostrar_frente()
+    if registro == None:
+        return interfaz_error("❌NO HAY REGISTROS❌")
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍PRIMER USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    usuario= Label(ventana, text=registro, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
+    usuario.place(x=35, y=70, width=270, height=215)
+
+    modificar_boton = Button(ventana, text="🔒MODIFICAR PRIMERO🔒", command=modificar_primero_final, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    modificar_boton.place(x=55, y=295, width=230, height=45)
+
+def modificar_ultimo_nombre_final(nombre):
+    if nombre == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not nombre.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_ultimo_nombre(nombre)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅NOMBRE MODIFICADO✅")
+
+def modificar_ultimo_nombre():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR NOMBRE✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_nombre = Label(ventana, text="✅NOMBRE:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_nombre.place(x=15, y=70, width=140, height=40)
+
+    entry_nombre = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_nombre.place(x=170, y=70, width=160, height=40)
+
+    nombre_boton = Button(ventana, text="🔒MODIFICAR NOMBRE🔒", command=lambda: modificar_ultimo_nombre_final(entry_nombre.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    nombre_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_ultimo_apellido_final(apellido):
+    if apellido == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not apellido.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_ultimo_apellido(apellido)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅APELLIDO MODIFICADO✅")
+
+def modificar_ultimo_apellido():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR APELLIDO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_apellido = Label(ventana, text="✅APELLIDO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_apellido.place(x=15, y=70, width=140, height=40)
+
+    entry_apellido = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_apellido.place(x=170, y=70, width=160, height=40)
+
+    apellido_boton = Button(ventana, text="🔒MODIFICAR APELLIDO🔒", command=lambda: modificar_ultimo_apellido_final(entry_apellido.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    apellido_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_ultimo_correo_final(correo):
+    if correo == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not correo.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_ultimo_correo(correo)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅CORREO MODIFICADO✅")
+
+def modificar_ultimo_correo():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR CORREO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_correo = Label(ventana, text="✅CORREO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_correo.place(x=15, y=70, width=140, height=40)
+
+    entry_correo = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_correo.place(x=170, y=70, width=160, height=40)
+
+    correo_boton = Button(ventana, text="🔒MODIFICAR CORREO🔒", command=lambda: modificar_ultimo_correo_final(entry_correo.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    correo_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_ultimo_telefono_final(telefono):
+    if telefono == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not telefono.isdigit():
+        return interfaz_error("❌NO CARACTERES❌")
+    usuario = cola.modificar_ultimo_telefono(telefono)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅TELEFONO MODIFICADO✅")
+
+def modificar_ultimo_telefono():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR TELEFONO✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_telefono = Label(ventana, text="✅TELEFONO:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_telefono.place(x=15, y=70, width=140, height=40)
+
+    entry_telefono = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_telefono.place(x=170, y=70, width=160, height=40)
+
+    telefono_boton = Button(ventana, text="🔒MODIFICAR TELEFONO🔒", command=lambda: modificar_ultimo_telefono_final(entry_telefono.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    telefono_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_ultimo_categoria_final(categoria):
+    if categoria == "":
+        return interfaz_error("❌COMPLETE LOS DATOS❌")
+    if not categoria.isalpha():
+        return interfaz_error("❌SOLO CARACTERES❌")
+    usuario = cola.modificar_ultimo_categoria(categoria)
+    if usuario == None:
+        return interfaz_error("❌OCURRIO UN PROBLEMA❌")
+    return interfaz_modificar(usuario, "✅CATEGORIA MODIFICADA✅")
+
+def modificar_ultimo_categoria():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x180")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="✅MODIFICAR CATEGORIA✅", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=10, y=15, width=320, height=45)
+
+    label_categoria = Label(ventana, text="✅CATEGORIA:", font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
+    label_categoria.place(x=15, y=70, width=140, height=40)
+
+    entry_categoria = Entry(ventana,  font=("times", 14, "bold"), relief="solid", border=2)
+    entry_categoria.place(x=170, y=70, width=160, height=40)
+
+    categoria_boton = Button(ventana, text="🔒MODIFICAR CATEGORIA🔒", command=lambda: modificar_ultimo_categoria_final(entry_categoria.get()), font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    categoria_boton.place(x=50, y=120, width=240, height=45)
+
+def modificar_ultimo_final():
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔒MODIFICAR USUARIO🔒", font=("impact", 20), bg="#ffffff", fg="#DB0000", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    modifcar_nombre = Button(ventana, text="🔒MODIFICAR NOMBRE🔒", command=modificar_ultimo_nombre, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modifcar_nombre.place(x=55, y=70, width=230, height=45)
+    
+    modificar_apellido = Button(ventana, text="🔒MODIFICAR APELLIDO🔒", command=modificar_ultimo_apellido, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_apellido.place(x=55, y=125, width=230, height=45)
+    
+    modificar_correo = Button(ventana, text="🔒MODIFICAR CORREO🔒", command=modificar_ultimo_correo, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_correo.place(x=55, y=180, width=230, height=45)
+    
+    modificar_telefono = Button(ventana, text="🔒MODIFICAR TELEFONO🔒", command=modificar_ultimo_telefono, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_telefono.place(x=55, y=235, width=230, height=45)
+    
+    modificar_categoria = Button(ventana, text="🔒MODIFICAR CATEGORIA🔒", command=modificar_ultimo_categoria, font=("impact", 16), bg="#FFFFFF", fg="#780AD3", relief="raised", border=5)
+    modificar_categoria.place(x=55, y=290, width=230, height=45)
+
+def comando_modificar_ultimo():
+    registro = cola.mostrar_ultimo()
+    if registro == None:
+        return interfaz_error("❌NO HAY REGISTROS❌")
+    ventana = Tk()
+    ventana.title("AGENDA VIRTUAL")
+    ventana.geometry("340x350")
+    ventana.configure(bg="#a3b1c6")
+
+    titulo = Label(ventana, text="🔍ULTIMO USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo.place(x=20, y=15, width=300, height=45)
+
+    usuario= Label(ventana, text=registro, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
+    usuario.place(x=35, y=70, width=270, height=215)
+
+    modificar_boton = Button(ventana, text="🔒MODIFICAR ULTIMO🔒", command=modificar_ultimo_final, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    modificar_boton.place(x=55, y=295, width=230, height=45)
+    
 def comando_modificar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
-    ventana.geometry("340x240")
+    ventana.geometry("340x180")
     ventana.configure(bg="#a3b1c6")
 
     titulo = Label(ventana, text="🔒MODIFICAR USUARIO🔒", font=("impact", 20), bg="#137bc0", fg="#FF0000", relief="groove", border=2)
     titulo.place(x=20, y=15, width=300, height=45)
 
-    primero_boton = Button(ventana, text="🔒MODIFICAR PRIMERO🔒", command=comando_eliminar_primero, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    primero_boton = Button(ventana, text="🔒MODIFICAR PRIMERO🔒", command=comando_modificar_primero, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     primero_boton.place(x=55, y=70, width=230, height=45)
 
-    ultimo_boton = Button(ventana, text="🔒MODIFICAR ULTIMO🔒", command=comando_eliminar_ultimo, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
+    ultimo_boton = Button(ventana, text="🔒MODIFICAR ULTIMO🔒", command=comando_modificar_ultimo, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
     ultimo_boton.place(x=55, y=125, width=230, height=45)
-    
-    especifico_boton = Button(ventana, text="🔒MODIFICAR ESPECIFICO🔒", command=comando_eliminar_especifico, font=("impact", 16), bg="#FFFFFF", fg="#FF0000", relief="raised", border=5)
-    especifico_boton.place(x=55, y=180, width=230, height=45)
 
 #LIMPIAR(CLEAN)
 def limpiar_final():
@@ -694,7 +1050,7 @@ def descendente_final():
 def comando_mostrar():
     ventana = Tk()
     ventana.title("AGENDA VIRTUAL")
-    ventana.geometry("340x410")
+    ventana.geometry("340x180")
     ventana.configure(bg="#a3b1c6")
     
     titulo = Label(ventana, text="📁MOSTRAR AGENDA📁", font=("impact", 20), bg="#137bc0", fg="#E91313", relief="groove", border=2)

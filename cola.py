@@ -272,18 +272,78 @@ class Cola:
             return None
         return usuarios
     
-    #MODIFICAR (UPDATE)
-    def modificar_nombre(self, codigo, nombre):
+    #MODIFICAR (FRENTE)
+    def modificar_frente_nombre(self, nombre):
         if self.esta_vacia():
             return None
-        actual = self.frente
-        while actual != None:
-            if actual.registro.getId() == id:
-                actual.registro.setNombre(nombre)
-                return actual.registro
-            actual = actual.siguiente
-        return None
-
+        actual = self.frente.registro
+        actual.setNombre(nombre)
+        return actual
+    
+    def modificar_frente_apellido(self, apellido):
+        if self.esta_vacia():
+            return None
+        actual = self.frente.registro
+        actual.setApellido(apellido)
+        return actual
+    
+    def modificar_frente_correo(self, correo):
+        if self.esta_vacia():
+            return None
+        actual = self.frente.registro
+        actual.setCorreo(correo)
+        return actual
+    
+    def modificar_frente_telefono(self, telefono):
+        if self.esta_vacia():
+            return None
+        actual = self.frente.registro
+        actual.setTelefono(telefono)
+        return actual
+    
+    def modificar_frente_categoria(self, categoria):
+        if self.esta_vacia():
+            return None
+        actual = self.frente.registro
+        actual.setCategoria(categoria)
+        return actual
+    
+    #MODIFICAR (ULTIMO)
+    def modificar_ultimo_nombre(self, nombre):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo.registro
+        actual.setNombre(nombre)
+        return actual
+    
+    def modificar_ultimo_apellido(self, apellido):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo.registro
+        actual.setApellido(apellido)
+        return actual
+    
+    def modificar_ultimo_correo(self, correo):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo.registro
+        actual.setCorreo(correo)
+        return actual
+    
+    def modificar_ultimo_telefono(self, telefono):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo.registro
+        actual.setTelefono(telefono)
+        return actual
+    
+    def modificar_ultimo_categoria(self, categoria):
+        if self.esta_vacia():
+            return None
+        actual = self.ultimo.registro
+        actual.setCategoria(categoria)
+        return actual
+    
     #MOSTRAR (SHOW)
     def mostrar_frente(self):
         if self.esta_vacia():
