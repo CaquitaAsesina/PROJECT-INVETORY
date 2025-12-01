@@ -1,5 +1,7 @@
 from clase import Sistema
 from tkinter import Button, Entry, Label, Tk, Frame, Canvas, Scrollbar, Toplevel
+from PIL import Image, ImageTk
+
 from cola import Cola
 from fronted import interfaz_encolar, mostrar, interfaz_buscar_primero, interfaz_buscar_ultimo, interfaz_buscar_especifico, interfaz_eliminar_especifico, interfaz_error, interfaz_modificar
 import random
@@ -1064,28 +1066,37 @@ def comando_mostrar():
 
 ventana = Tk()
 ventana.title("AGENDA VIRTUAL")
-ventana.geometry("340x410")
+ventana.geometry("690x460")
 ventana.configure(bg="#a3b1c6")
 
-titulo = Label(ventana, text="👤VENTANA PRINCIPAL👤", font=("impact", 20), bg="#FFFFFF", fg="#9700FC", relief="groove", border=2)
-titulo.place(x=20, y=15, width=300, height=45)
+titulo = Label(ventana, text="VENTANA PRINCIPAL", font=("impact", 60), bg="#FFFFFF", fg="#9700FC", relief="groove", border=2)
+titulo.place(x=30, y=15, width=630, height=80)
 
-agregar_boton = Button(ventana, text="AGREGAR USUARIO✅", command=comando_agregar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-agregar_boton.place(x=55, y=70, width=230, height=45)
+agregar_boton = Button(ventana, text="AGREGAR USUARIO✅", command=comando_agregar, font=("impact", 16), bg="#FFFFFF", fg="#1CEC00", relief="raised", border=5)
+agregar_boton.place(x=55, y=115, width=230, height=45)
 
-buscar_boton = Button(ventana, text="BUSCAR USUARIO🔎", command=comando_buscar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-buscar_boton.place(x=55, y=125, width=230, height=45)
+buscar_boton = Button(ventana, text="BUSCAR USUARIO🔎", command=comando_buscar, font=("impact", 16), bg="#FFFFFF", fg="#094DE2", relief="raised", border=5)
+buscar_boton.place(x=55, y=170, width=230, height=45)
 
-eliminar_boton = Button(ventana, text="ELIMINAR USUARIO⛔", command=comando_eliminar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-eliminar_boton.place(x=55, y=180, width=230, height=45)
+eliminar_boton = Button(ventana, text="ELIMINAR USUARIO⛔", command=comando_eliminar, font=("impact", 16), bg="#FFFFFF", fg="#EE0505", relief="raised", border=5)
+eliminar_boton.place(x=55, y=225, width=230, height=45)
 
-modificar_boton = Button(ventana, text="MODIFICAR USUARIO🔓", command=comando_modificar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-modificar_boton.place(x=55, y=235, width=230, height=45)
+modificar_boton = Button(ventana, text="MODIFICAR USUARIO🔓", command=comando_modificar, font=("impact", 16), bg="#FFFFFF", fg="#0EDFC3", relief="raised", border=5)
+modificar_boton.place(x=55, y=280, width=230, height=45)
 
-limpiar_boton = Button(ventana, text="LIMPIAR AGENDA🗑️", command=comando_limpiar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-limpiar_boton.place(x=55, y=290, width=230, height=45)
+limpiar_boton = Button(ventana, text="LIMPIAR AGENDA🗑️", command=comando_limpiar, font=("impact", 16), bg="#FFFFFF", fg="#26A500", relief="raised", border=5)
+limpiar_boton.place(x=55, y=335, width=230, height=45)
 
-mostrar_boton = Button(ventana, text="VER AGENDA VIRTUAL📦", command=comando_mostrar, font=("impact", 16), bg="#FFFFFF", fg="#000000", relief="raised", border=5)
-mostrar_boton.place(x=55, y=345, width=230, height=45)
+mostrar_boton = Button(ventana, text="VER AGENDA VIRTUAL📦", command=comando_mostrar, font=("impact", 16), bg="#FFFFFF", fg="#D30EC9", relief="raised", border=5)
+mostrar_boton.place(x=55, y=390, width=230, height=45)
+
+img_prin = Image.open("img_tigre.png")
+
+img_prin.thumbnail((315, 335), Image.LANCZOS)
+
+dead = ImageTk.PhotoImage(img_prin)
+
+dead_label = Label(ventana, image=dead, relief="groove")
+dead_label.place(x=320, y=117)
 
 ventana.mainloop()
