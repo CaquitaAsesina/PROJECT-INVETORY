@@ -1,191 +1,170 @@
-DOCUMENTACIÓN DEL SISTEMA DE AGENDA VIRTUAL
+# 📒 Sistema de Agenda Virtual
 
-1. Descripción General
-Este sistema implementa una agenda virtual utilizando una cola bidireccional basada en una lista doblemente enlazada. Permite gestionar contactos con operaciones típicas de una cola (FIFO - First In First Out) junto con funcionalidades adicionales de búsqueda, modificación y eliminación en cualquier posición.
+El **Sistema de Agenda Virtual** es una aplicación diseñada para gestionar contactos utilizando una **cola bidireccional** implementada con una **lista doblemente enlazada**.  
+Permite registrar, buscar, modificar y eliminar contactos, manteniendo una estructura eficiente sin uso de bases de datos externas.
 
-Características principales:
-Estructura de datos: Lista doblemente enlazada que simula una cola
+---
 
-Persistencia en memoria: Todos los datos se mantienen en memoria durante la ejecución
+## 🚀 Características Principales
 
-Validación: Evita códigos duplicados
+- **Estructura dinámica:** lista doblemente enlazada simulando una cola.
+- **Acceso bidireccional:** operaciones desde el frente y el final.
+- **Validación estricta:** evita códigos duplicados.
+- **Búsquedas flexibles:** por código, nombre, apellido, correo, teléfono o categoría.
+- **Eliminación y modificación en cualquier posición.**
+- **Persistencia en memoria:** no requiere archivos ni bases de datos.
 
-Operaciones bidireccionales: Tanto desde el frente como desde el final
+---
 
-Búsquedas múltiples: Por diferentes campos del contacto
+## 🧩 Estructura del Sistema
 
-2. Estructura de Clases
+### 🔹 Clase `Sistema` (Modelo de Contacto)
 
-2.1 Clase Sistema - Modelo de Datos
-Representa un contacto en la agenda con los siguientes atributos:
+Representa un contacto con los siguientes atributos:
 
-Atributos:
-codigo (str/int): Identificador único del contacto
-nombre (str): Nombre del contacto
-apellido (str): Apellido del contacto
-correo (str): Correo electrónico
-telefono (str): Número de teléfono
-categoria (str): Categoría/clasificación del contacto
+- `codigo`
+- `nombre`
+- `apellido`
+- `correo`
+- `telefono`
+- `categoria`
 
-Métodos principales:
+Incluye:
 
-Getters y Setters: Para cada atributo, siguiendo el principio de encapsulación
+- Encapsulación mediante getters y setters.
+- Método `__str__()` para mostrar el contacto formateado.
 
-**str**(): Representación formateada del contacto para visualización
+---
 
-2.2 Clase Nodo - Elemento de la Lista Enlazada
+### 🔹 Clase `Nodo`
 
-Atributos:
-registro (Sistema): Objeto contacto almacenado en el nodo
-siguiente (Nodo): Referencia al nodo siguiente (None si es el último)
-anterior (Nodo): Referencia al nodo anterior (None si es el primero)
+Elemento básico de la lista doblemente enlazada.
 
-2.3 Clase Cola - Estructura Principal
+- `registro` → contacto almacenado
+- `siguiente` → referencia al nodo siguiente
+- `anterior` → referencia al nodo anterior
 
-Implementa una cola bidireccional usando lista doblemente enlazada.
+---
 
-Atributos:
-frente (Nodo): Primer elemento de la cola
-ultimo (Nodo): Último elemento de la cola
-tamaño (int): Número total de elementos en la cola
+### 🔹 Clase `Cola`
 
-3. Funcionamiento Detallado
+Estructura principal del sistema, con:
 
-3.1 Principios de la Cola Bidireccional
+- `frente`
+- `ultimo`
+- `tamaño`
 
-Estado inicial: frente = None, ultimo = None, tamaño = 0
+#### **Operaciones principales**
 
-Operación: encolar(registro1)
-Resultado: frente → registro1 ← ultimo
-tamaño = 1
+| Tipo de operación | Métodos                                                       |
+| ----------------- | ------------------------------------------------------------- |
+| Inserción         | `encolar()`                                                   |
+| Eliminación       | `desencolar()`, `desencolar_ultimo()`                         |
+| Búsquedas         | `busca_codigo()`, `busca_nombre()`, `busca_categoria()`, etc. |
+| Modificaciones    | `modificar_frente()`, `modificar_ultimo()`                    |
+| Visualización     | `mostrar_agenda()`, `mostrar_agenda_ultimo()`                 |
 
-Operación: encolar(registro2)
-Resultado: frente → registro1 ↔ registro2 ← ultimo
-tamaño = 2
+---
 
-Operación: encolar(registro3)
-Resultado: frente → registro1 ↔ registro2 ↔ registro3 ← ultimo
-tamaño = 3
+## ⚙️ Funcionamiento Interno
 
-3.2 Operaciones Disponibles
-3.2.1 Operaciones Básicas de Cola
+### ✔ Encolar
 
-Método → Descripción → Complejidad
-encolar(registro) →Agrega un contacto al final de la cola → O(1)
-desencolar() → Elimina y retorna el contacto del frente → O(1)
-esta_vacia() → Verifica si la cola está vacía → O(1)
-mostrar_frente() →Muestra el contacto del frente sin eliminarlo → O(1)
-mostrar_ultimo() →Muestra el último contacto sin eliminarlo → O(1)
+Inserta un contacto al final.  
+Complejidad: **O(1)**.
 
-3.2.2 Búsquedas
+### ✔ Desencolar
 
-Método →Descripción →Complejidad
-busca_codigo(codigo)→ Busca por código único→ O(n)
-busca_nombre(nombre)→ Busca por nombre exacto →O(n)
-busca_categoria(categoria) →Retorna lista de contactos por categoría →O(n)
-Otras búsquedas: Por apellido, correo, teléfono→ Similar funcionamiento →O(n)
+Elimina el contacto del frente.  
+Complejidad: **O(1)**.
 
-3.2.3 Eliminaciones
+### ✔ Búsquedas
 
-Método→ Descripción→Complejidad
-desencolar_ultimo() →Elimina desde el final (no estándar en colas)→ O(1)
-eliminar_codigo(codigo) →Elimina un nodo específico por código →O(n)
-eliminar_categoria(categoria) →Elimina todos los contactos de una categoría→ O(n)
+Recorre la lista completamente, según el criterio.  
+Complejidad: **O(n)**.
 
-3.2.4 Modificaciones
+### ✔ Eliminaciones específicas
 
-Método→ Descripción →Complejidad
-modificar_frente(nuevo_valor) →Modifica atributos del frente→ O(1)
-modificar_ultimo(nuevo_valor) →Modifica atributos del final →O(1)
+Permite eliminar por:
 
-3.2.5 Visualización
+- Código
+- Categoría
+- Desde el final
 
-Método →Descripción →Complejidad
-mostrar_agenda() →Lista todos los contactos desde el frente→ O(n)
-mostrar_agenda_ultimo() →Lista todos los contactos desde el final →O(n)
+Complejidad: **O(n)** cuando requiere recorrido.
 
-4. Flujos de Operación
+---
 
-4.1 Agregar un Contacto
+## 🧪 Flujo Típico de Operaciones
 
-Paso 1: Verificar si el código ya existe (codigo_existe())
-⮕ Si existe: retorna None, no se agrega
-⮕ Si no existe: continúa
+### ➤ Agregar un contacto
 
-Paso 2: Crear nuevo nodo con el registro
-Paso 3: Si la cola está vacía:
-frente = nuevo
-ultimo = nuevo
-Sino:
-ultimo.siguiente = nuevo
-nuevo.anterior = ultimo
-ultimo = nuevo
-Paso 4: Incrementar tamaño en 1
+1. Validar que el código no exista.
+2. Crear nodo nuevo.
+3. Enlazar al final de la cola.
+4. Incrementar tamaño.
 
-4.2 Eliminar por Código
+### ➤ Eliminar un contacto por código
 
-Paso 1: Verificar si la cola está vacía
-Paso 2: Recorrer la lista hasta encontrar el código
-Paso 3: Reconfigurar punteros según la posición:
-• Si es el frente: mover frente al siguiente
-• Si es el último: mover último al anterior
-• Si está en medio: puentear el nodo
-Paso 4: Reducir tamaño en 1
+1. Recorrer la cola hasta encontrarlo.
+2. Ajustar punteros según su posición (frente, medio o final).
+3. Reducir tamaño.
 
-4.3 Buscar Contactos por Categoría
+### ➤ Buscar por categoría
 
-Paso 1: Crear lista vacía para resultados
-Paso 2: Recorrer toda la cola desde el frente
-Paso 3: Para cada nodo, comparar la categoría
-Paso 4: Si coincide, agregar a la lista de resultados
-Paso 5: Retornar lista (puede estar vacía) 5. Validaciones y Control de Errores
+1. Recorrer desde el frente.
+2. Comparar categoría.
+3. Retornar lista de coincidencias.
 
-5.1 Códigos Únicos
+---
 
-El sistema garantiza que no existan códigos duplicados mediante:
-Verificación en encolar() antes de agregar
-Retorno de None si se intenta agregar duplicado
+## 🛡 Validaciones y Manejo de Errores
 
-5.2 Manejo de Cola Vacía
-Todos los métodos verifican esta_vacia() antes de operar, retornando None cuando corresponda.
+- No permite códigos duplicados.
+- Todas las operaciones verifican si la estructura está vacía.
+- Los punteros se actualizan correctamente al eliminar nodos.
 
-5.3 Integridad de Referencias
-En operaciones de eliminación, se actualizan correctamente los punteros anterior y siguiente para mantener la integridad de la lista doble.
+---
 
-6. Ventajas de la Implementación
+## 📌 Ventajas y Limitaciones
 
-6.1 Ventajas
+### ✔ Ventajas
 
-Acceso bidireccional: Permite operaciones desde ambos extremos
-Búsqueda flexible: Encuentra contactos por cualquier campo
-Eliminación específica: Puede eliminar nodos en cualquier posición
-Memoria eficiente: Solo usa memoria para los elementos existentes
-Operaciones O(1): Para operaciones básicas de cola
+- Operaciones básicas en tiempo constante.
+- Estructura dinámica y eficiente.
+- Eliminaciones específicas sin necesidad de reordenar.
+- Búsquedas amplias por múltiples campos.
 
-6.2 Limitaciones
+### ✖ Limitaciones
 
-Complejidad O(n): Para búsquedas y eliminaciones específicas
-Sin persistencia: Los datos se pierden al terminar la ejecución
-Sin ordenamiento: Los contactos no se ordenan automáticamente
+- Datos no persistentes (se pierden al cerrar la app).
+- Búsquedas y eliminaciones internas son O(n).
+- No incluye ordenamiento automático.
 
-PASOS PARA USAR LA AGENDA VIRTUAL
+---
 
-1. Crear un entorno virtual (si aún no existe)
+# 🖥 Cómo Ejecutar la Agenda Virtual
 
-Si el proyecto no incluye un entorno virtual, crea uno dentro de la carpeta del proyecto usando:
-→ python -m venv venv
+Sigue estos pasos:
 
-2. Activar el entorno virtual
+---
 
-Ubícate dentro de la carpeta del proyecto y activa el entorno virtual.
-→ venv\Scripts\activate
+## 1️⃣ Crear entorno virtual (si no existe)
 
-3. Instalar las dependencias del proyecto
+python -m venv venv
 
-Una vez el entorno virtual esté activado, instala todos los paquetes necesarios ejecutando:
-→ pip install -r requirements.txt
+## 2️⃣ Activar entorno virtual
 
-4. Ejecutar la aplicación
+Windows:
+venv\Scripts\activate
 
-Cuando las dependencias estén instaladas, inicia la Agenda Virtual corriendo el archivo principal:
-→ python run.py
+Linux / MacOS:
+source venv/bin/activate
+
+## 3️⃣ Ejecutar la aplicación
+
+pip install -r requirements.txt
+
+## 4️⃣ ```bash
+
+python run.py
