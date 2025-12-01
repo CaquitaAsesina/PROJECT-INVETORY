@@ -1090,7 +1090,7 @@ limpiar_boton.place(x=55, y=335, width=230, height=45)
 mostrar_boton = Button(ventana, text="VER AGENDA VIRTUAL📦", command=comando_mostrar, font=("impact", 16), bg="#FFFFFF", fg="#D30EC9", relief="raised", border=5)
 mostrar_boton.place(x=55, y=390, width=230, height=45)
 
-img_prin = Image.open("img_tigre.png")
+img_prin = Image.open("img_wanda.png")
 
 img_prin.thumbnail((315, 335), Image.LANCZOS)
 
