@@ -44,4 +44,4 @@ class Sistema:
         self.categoria = categoria
 
     def __str__(self):
-        return f"👤CODIGO:\n ⏩{self.codigo}\n👤NOMBRES:\n ⏩{self.nombre.upper()}\n👤APELLIDOS:\n ⏩{self.apellido.upper()}\n👤CORREO:\n ⏩{self.correo.upper()}\n👤TELEFONO:\n ⏩{self.telefono}\n👤CATEGORIA:\n ⏩{self.categoria.upper()}"
+        return f"CODIGO:\n ⏩{self.codigo}\nNOMBRES:\n ⏩{self.nombre.upper()}\nAPELLIDOS:\n ⏩{self.apellido.upper()}\nCORREO:\n ⏩{self.correo.upper()}\nTELEFONO:\n ⏩{self.telefono}\nCATEGORIA:\n ⏩{self.categoria.upper()}"
