@@ -133,13 +133,12 @@ class Cola:
                 elif actual == self.ultimo:
                     self.ultimo = actual.anterior
                     self.ultimo.siguiente =None
-                
                 else:
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
                 return usuario
-        actual = actual.siguiente
+            actual = actual.siguiente
         return None
     
     def eliminar_nombre(self, nombre):
@@ -164,7 +163,7 @@ class Cola:
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
                 return usuario
-        actual = actual.siguiente
+            actual = actual.siguiente
         return None
     
     def eliminar_apellido(self, apellido):
@@ -189,7 +188,7 @@ class Cola:
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
                 return usuario
-        actual = actual.siguiente
+            actual = actual.siguiente
         return None
     
     def eliminar_correo(self, correo):
@@ -214,7 +213,7 @@ class Cola:
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
                 return usuario
-        actual = actual.siguiente
+            actual = actual.siguiente
         return None
     
     def eliminar_telefono(self, telefono):
@@ -239,7 +238,7 @@ class Cola:
                     actual.siguiente.anterior = actual.anterior
                 self.tamaño -= 1
                 return usuario
-        actual = actual.siguiente
+            actual = actual.siguiente
         return None
     
     def eliminar_categoria(self, categoria):

@@ -12,208 +12,223 @@ frente = None
 ultimo = None
 tamaño = 0
 
-→ ENCOLAR → ENQUEUE → A
+→ ENCOLAR → ENQUEUE → REGISTRO A
 
+→ VERIFICAR CODIGO → IS EXISTS
 → ESTADO INICIAL
 frente = None
 ultimo = None
 tamaño = 0
 
+actual = frente 
+
+→ VISUAL
+actual → None
+
+actual → None → FALSE
+
 → CREAR NUEVO NODO
 nuevo = Nodo[A]
 
 → VISUAL
-[A | None | None]
+[REGISTRO A | None | None]
 
 → COLA VACIA
 frente = nuevo
 ultimo = nuevo
 
 → VISUAL
-frente → [A | None | None] 
-ultimo → [A | None | None] 
+frente → [REGISTRO A | None | None] 
+ultimo → [REGISTRO A | None | None] 
 
 tamaño += 1
 
 → ESTADO FINAL
-frente → [A | None | None] ← ultimo
-frente = Nodo[A | None | None]
-ultimo = Nodo[A | None | None]
+frente → [REGISTRO A | None | None] ← ultimo
+frente = Nodo[REGISTRO A | None | None]
+ultimo = Nodo[REGISTRO A | None | None]
 tamaño = 1
 
-→ ENCOLAR → ENQUEUE → B
+→ ENCOLAR → ENQUEUE → REGISTRO B
 
 → ESTADO INICIAL
-frente → [A | None | None] ← ultimo
-frente = Nodo[A | None | None]
-ultimo = Nodo[A | None | None]
+frente → [REGISTRO A | None | None] ← ultimo
+frente = Nodo[REGISTRO A | None | None]
+ultimo = Nodo[REGISTRO A | None | None]
 tamaño = 1
 
 → CREAR NUEVO NODO
 nuevo = Nodo[B]
 
 →VISUAL
-[B | None | None]
+[REGISTRO B | None | None]
 
 → COLA !→ 0
 ultimo → siguiente = nuevo
 
 → VISUAL
-[A | B | None] → [B | None | None]
-frente → [A | B | None] 
-ultimo → [A | B | None] 
+[REGISTRO A | REGISTRO B | None] → [B | None | None]
+frente → [REGISTRO A | B | None] 
+ultimo → [REGISTRO A | B | None] 
 
 nuevo → anterior = ultimo
 
 → VISUAL
-[A | B | None] → [B | None | A]
-frente → [A | B | None] 
-ultimo → [A | B | None] 
+[REGISTRO A | REGISTRO B | None] → [REGISTRO B | None | REGISTRO A]
+frente → [REGISTRO A | REGISTRO B | None] 
+ultimo → [REGISTRO A | REGISTRO B | None] 
 
 ultimo = nuevo
 
 → VISUAL
-ultimo → Nodo[B | None | A]
+ultimo → Nodo[REGISTRO B | None | REGISTRO A]
 
 → ESTADO FINAL
-frente → [A | B | None] ←→ [B | None | A] ← ultimo
-frente → Nodo[A | B | None ] 
-ultimo = Nodo[B | None | A]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | None | REGISTRO A] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None ] 
+ultimo = Nodo[REGISTRO B | None | REGISTRO A]
 tamaño = 2
 
-→ ENCOLAR → ENQUEUE → C
+→ ENCOLAR → ENQUEUE → REGISTRO C
 
 → ESTADO INICIAL
-frente → [A | B | None] ←→ [B | None | A] ← ultimo
-frente → Nodo[A | B | None ] 
-ultimo = Nodo[B | None | A]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | None | REGISTRO A] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None ] 
+ultimo = Nodo[REGISTRO B | None | REGISTRO A]
 tamaño = 2
 
 → CREAR NUEVO NODO
-nuevo = Nodo[C]
+nuevo = Nodo[REGISTRO C]
 
 →VISUAL
-[C | None | None]
+[REGISTRO C | None | None]
 
 → COLA !→ 0
 ultimo → siguiente = nuevo
 
 → VISUAL
-[A | B | None] → [B | C | A] → [C | None | None]
-frente → Nodo[A | B | None] 
-ultimo → Nodo[B | C | A] 
+[REGISTRO A | REGISTRO B | None] → [REGISTRO B | REGISTRO C | REGISTRO A] → [REGISTRO C | None | None]
+frente → Nodo[REGISTRO A | B | None] 
+ultimo → Nodo[REGISTRO B | REGISTRO C | REGISTRO A] 
 
 nuevo → anterior = ultimo 
 
 → VISUAL
-[A | B | None] → [B | C | A] → [C | None | B]
-frente → Nodo[A | B | None] 
-ultimo → Nodo[B | C | A] 
+[REGISTRO A | REGISTRO B | None] → [REGISTRO B | REGISTRO C | REGISTRO A] → [REGISTRO C | None | REGISTRO B]
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo → Nodo[REGISTRO B | REGISTRO C | REGISTRO A] 
 
 ultimo =  nuevo 
 tamaño += 1
 tamaño = 3
 
 → VISUAL
-ultimo → Nodo[C | None | B]
+ultimo → Nodo[REGISTRO C | None | REGISTRO B]
 
 → ESTADO FINAL
-frente → [A | B | None] ←→ [B | C | A] ←→ [C | None | B] ← ultimo
-frente → Nodo[A | B | None] 
-ultimo = Nodo[C | None | B]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C| None | REGISTRO B] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO C | None | REGISTRO B]
 tamaño = 3
 
-→ ENCOLAR → ENQUEUE → D
+→ ENCOLAR → ENQUEUE → REGISTRO D
+
+→ ESTADO INICIAL
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C| None | REGISTRO B] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO C | None | REGISTRO B]
+tamaño = 3
 
 → CREAR NUEVO NODO
-nuevo = Nodo[D]
+nuevo = Nodo[REGISTRO D]
 
 → VISUAL
-[D | None | None]
+[REGISTRO D | None | None]
 
 → COLA !→ 0
 ultimo → siguiente = nuevo
 
 → VISUAL
-[A | B | None] ←→ [B | C | A] ←→ [C | D | B] →  [D | None | None]
-frente → Nodo[A | B | None] 
-ultimo = Nodo[C | C | D]
+[REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C | REGISTRO D| REGISTRO B] →  [REGISTRO D | None | None]
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO C | REGISTRO D | REGISTRO B]
 
 nuevo → anterior = ultimo
-[A | B | None] ←→ [B | C | A] ←→ [C | D | B] →  [D | None | C]
-frente → Nodo[A | B | None] 
-ultimo = Nodo[C | C | D]
+[REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C | REGISTRO D | REGISTRO B] →  [REGISTRO D | None | REGISTRO C]
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO C | REGISTRO D | REGISTRO B]
 
 ultimo = nuevo
 tamaño += 1
 tamaño = 4
 
 → VISUAL
-ultimo → Nodo[D | None | C]
+ultimo → Nodo[REGISTRO D | None | REGISTRO C]
 
 → ESTADO FINAL
-frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | None | C] ← ultimo
-frente → Nodo[A | B | None]
-ultimo → Nodo[D | None | C]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A ] ←→ [REGISTRO C| REGISTRO D | REGISTRO B ] ←→  [REGISTRO D | None | REGISTRO C] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None]
+ultimo → Nodo[REGISTRO D | None | REGISTRO C]
+tamaño = 4
 
-→ ENCOLAR → ENQUEUE → E
+→ ENCOLAR → ENQUEUE → REGISTRO E
 
 → CREAR NUEVO NODO
-nuevo = Nodo[E]
+nuevo = Nodo[REGISTRO E]
 
 → VISUAL
-[E | None | None]
+[REGISTRO E | None | None]
 
 → COLA !→ 0
 ultimo → siguiente = nuevo
 
 → VISUAL
-[A | B | None] ←→ [B | C | A] ←→ [C | D | B] ←→ [D | E | C]→[E | None | None]
-frente → Nodo[A | B | None] 
-ultimo = Nodo[D | E | C]
+[REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C | REGISTRO D | REGISTRO B] ←→ [REGISTRO D | REGISTRO E | REGISTRO C]→[REGISTRO E | None | None]
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO D | REGISTRO E | REGISTRO C]
 
 nuevo → anterior = ultimo 
 
 → VISUAL
-[A | B | None] ←→ [B | C | A] ←→ [C | D | B] ←→ [D | E | None]→[E | None | D]
-frente → Nodo[A | B | None] 
-ultimo = Nodo[D | E | C]
+[REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A] ←→ [REGISTRO C | REGISTRO D | REGISTRO B] ←→ [REGISTRO D | REGISTRO E | None]→[REGISTRO E | None | REGISTRO D]
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo = Nodo[REGISTRO D | REGISTRO E | REGISTRO C]
 
 ultimo =  nuevo 
 tamaño += 1
 tamaño = 5
 
 → VISUAL
-ultimo → Nodo[E | None | D]
+ultimo → Nodo[REGISTRO E | None | REGISTRO D]
 
 → ESTADO FINAL
-frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
-frente → Nodo[A | B | None] 
-ultimo → Nodo[E | None | D]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A ] ←→ [REGISTRO C | REGISTRO D | REGISTRO B ] ←→  [REGISTRO D | REGISTRO E | REGISTRO C] →[REGISTRO E | None | REGISTRO D] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo → Nodo[REGISTRO E | None | REGISTRO D]
 tamaño = 5
 
 → DESENCOLAR PRIMERO → DEQUEUE
 
 → ESTADO INICIAL
-frente → [A | B | None] ←→ [B | C | A ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
-frente → Nodo[A | B | None] 
-ultimo → Nodo[E | None | D]
+frente → [REGISTRO A | REGISTRO B | None] ←→ [REGISTRO B | REGISTRO C | REGISTRO A ] ←→ [REGISTRO C | REGISTRO D | REGISTRO B ] ←→  [REGISTRO D | REGISTRO E | REGISTRO C] →[REGISTRO E | None | REGISTRO D] ← ultimo
+frente → Nodo[REGISTRO A | REGISTRO B | None] 
+ultimo → Nodo[REGISTRO E | None | REGISTRO D]
 tamaño = 5
 
 frente = frente → siguiente
 
 → VISUAL 
-frente → Nodo[B | C | A ]
+frente → Nodo[REGISTRO B | REGISTRO C | REGISTRO A ]
 
 → COLA !→ 0
 frente → anterior = None
 tamaño -= 1
 
 → VISUAL
-frente → Nodo[B | C | None]
+frente → Nodo[REGISTRO B | REGISTRO C | None]
 
 → ESTADO FINAL 
-frente → [B | C | None ] ←→ [C | D | B ] ←→  [D | E | C] →[E | None | D] ← ultimo
+frente → [REGISTRO B | REGISTRO C | None ] ←→ [REGISTRO C | REGISTRO D | REGISTRO B ] ←→  [REGISTRO D | REGISTRO E | REGISTROC] →[E | None | D] ← ultimo
 frente → Nodo[B | C | None] 
 ultimo → Nodo[E | None | D]
 tamaño = 4
@@ -263,3 +278,7 @@ ultimo = None
  frente → None
 ultimo → None
 tamaño = 0
+
+
+
+
