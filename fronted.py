@@ -1,5 +1,5 @@
 from tkinter import Label, Tk, Frame, Canvas, Scrollbar, Toplevel
-
+from PIL import Image, ImageTk
 #AGREGAR(SAVE)
 def interfaz_encolar(registro, id):
     ventana = Tk()
@@ -7,13 +7,13 @@ def interfaz_encolar(registro, id):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")    
 
-    titulo = Label(ventana, text="✅REGISTRO AGREGADO✅", font=("impact", 20), bg="#ffffff", fg="#06AC00", relief="groove", border=2)
+    titulo = Label(ventana, text="REGIS. AGREGADO", font=("impact", 30), bg="#A1B7CF", fg="#065A06", relief="groove", border=3)
     titulo.place(x=20, y=15, width=300, height=45)
 
     usuario= Label(ventana, text=registro, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text=f"Numero de registro: {id}", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje = Label(ventana, text=f"Numero de registro: {id}", font=("impact", 16), bg="#9CC4A6", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
     ventana.after(1000, ventana.destroy)
@@ -24,7 +24,7 @@ def mostrar(datos_agenda, titulo):
     ventana.title("AGENDA VIRTUAL")
     ventana.geometry("400x500")
     ventana.configure(bg="#a3b1c6")
-    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#E0D315", relief="groove", border=2)
+    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#A1B7CF", fg="#0C70AA", relief="groove", border=3)
     titulo.pack(pady=10)
     marco_principal = Frame(ventana, bg="#a3b1c6")
     marco_principal.pack(fill="both", expand=True, padx=20, pady=10)
@@ -51,13 +51,13 @@ def interfaz_buscar_primero(usuario):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text="🔍PRIMER USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text="PRIMER USUARIO", font=("impact", 30), bg="#A1B7CF", fg="#0609BD", relief="groove", border=3)
     titulo.place(x=20, y=15, width=300, height=45)
 
     usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text="🔍USUARIO ENCONTRADO🔎", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje = Label(ventana, text="USUARIO ENCONTRADO", font=("impact", 16), bg="#8D8ED3", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
 def interfaz_buscar_ultimo(usuario):
@@ -66,13 +66,13 @@ def interfaz_buscar_ultimo(usuario):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text="🔍ULTIMO USUARIO🔎", font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text="ULTIMO USUARIO", font=("impact", 30), bg="#A1B7CF", fg="#0609BD", relief="groove", border=3)
     titulo.place(x=20, y=15, width=300, height=45)
 
     usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text="🔍USUARIO ENCONTRADO🔎", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje = Label(ventana, text="USUARIO ENCONTRADO", font=("impact", 16), bg="#8D8ED3", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
 def interfaz_buscar_especifico(usuario, titulo):
@@ -81,13 +81,13 @@ def interfaz_buscar_especifico(usuario, titulo):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text=titulo, font=("impact", 30), bg="#A1B7CF", fg="#0609BD", relief="groove", border=3)
     titulo.place(x=20, y=15, width=300, height=45)
 
     usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text="🔍USUARIO ENCONTRADO🔎", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje = Label(ventana, text="USUARIO ENCONTRADO", font=("impact", 16), bg="#8D8ED3", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
 
@@ -98,13 +98,13 @@ def interfaz_eliminar_especifico(usuario, titulo):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text=titulo, font=("impact", 20), bg="#ffffff", fg="#0165FA", relief="groove", border=2)
+    titulo = Label(ventana, text=titulo, font=("impact", 30), bg="#A1B7CF", fg="#990505", relief="groove", border=2)
     titulo.place(x=20, y=15, width=300, height=45)
 
     usuario= Label(ventana, text=usuario, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text="❌USUARIO ELIMINADO❌", font=("impact", 16), bg="#ffffff", fg="#000000", relief="raised", border=5)
+    mensaje = Label(ventana, text="USUARIO ELIMINADO", font=("impact", 16), bg="#D47878", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
 def interfaz_error(message):
@@ -113,7 +113,7 @@ def interfaz_error(message):
     ventana.geometry("340x130")
     ventana.configure(bg="#a3b1c6")
 
-    titulo = Label(ventana, text="⛔PROBLEMA DETECTADO⛔", font=("impact", 20), bg="#3fc4f8", fg="#F30000", relief="groove", border=2)
+    titulo = Label(ventana, text="PROBLEMA DETECTADO", font=("impact", 20), bg="#3fc4f8", fg="#F30000", relief="groove", border=3)
     titulo.place(x=11, y=15, width=320, height=45)
 
     usuario= Label(ventana, text=message, font=("Segoe U", 12), bg="#ACBEF0", fg="#FF0000", relief="groove", border=2)
@@ -128,13 +128,13 @@ def interfaz_modificar(registro, modificado):
     ventana.geometry("340x350")
     ventana.configure(bg="#a3b1c6")    
 
-    titulo = Label(ventana, text="✅USUARIO MODIFICADO✅", font=("impact", 20), bg="#27AAE7", fg="#970053", relief="groove", border=2)
+    titulo = Label(ventana, text="USUARIO MODIFICADO", font=("impact", 20), bg="#A1B7CF", fg="#590691", relief="groove", border=3)
     titulo.place(x=11, y=15, width=320, height=45)
 
-    usuario= Label(ventana, text=registro, font=("Segoe U", 10), bg="#ACBEF0", fg="#000000", relief="raised", border=2, justify= "left")
+    usuario= Label(ventana, text=registro, font=("Segoe U", 10), bg="#BA8FD6", fg="#000000", relief="raised", border=2, justify= "left")
     usuario.place(x=35, y=70, width=270, height=215)
 
-    mensaje = Label(ventana, text=modificado, font=("impact", 16), bg="#ffffff", fg="#06AC00", relief="raised", border=5)
+    mensaje = Label(ventana, text=modificado, font=("impact", 16), bg="#590691", fg="#000000", relief="raised", border=5)
     mensaje.place(x=45, y=295, width=250, height=45)
 
     
