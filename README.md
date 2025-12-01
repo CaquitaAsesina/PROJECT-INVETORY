@@ -161,10 +161,10 @@ venv\Scripts\activate
 Linux / MacOS:
 source venv/bin/activate
 
-## 3️⃣ Ejecutar la aplicación
+## 3️⃣ Instalar dependencias
 
 pip install -r requirements.txt
 
-## 4️⃣ ```bash
+## 4️⃣ Ejecutar la aplicación
 
 python run.py
