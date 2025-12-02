@@ -14,18 +14,10 @@ tamaño = 0
 
 → ENCOLAR → ENQUEUE → REGISTRO A
 
-→ VERIFICAR CODIGO → IS EXISTS
 → ESTADO INICIAL
 frente = None
 ultimo = None
 tamaño = 0
-
-actual = frente 
-
-→ VISUAL
-actual → None
-
-actual → None → FALSE
 
 → CREAR NUEVO NODO
 nuevo = Nodo[A]
